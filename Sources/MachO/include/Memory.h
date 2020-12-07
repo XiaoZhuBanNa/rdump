@@ -45,4 +45,14 @@ template <typename T, typename... U> T *make(U &&... args) {
 
 } // namespace lld
 
+BumpPtrAllocator llvm::bAlloc;
+StringSaver llvm::saver{bAlloc};
+std::vector<llvm::SpecificAllocBase *> llvm::SpecificAllocBase::instances;
+
+void llvm::freeArena() {
+  for (SpecificAllocBase *alloc : SpecificAllocBase::instances)
+    alloc->reset();
+  bAlloc.Reset();
+}
+
 #endif /* Header_h */
