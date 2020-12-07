@@ -1,14 +1,15 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/ADT/STLExtras.h"
+#include "MachODump.h"
 
 using namespace llvm;
 
-static cl::opt<std::string> library("library",
+static cl::opt<std::string> Library("library",
                                     cl::Optional,
                                     cl::desc("library path"),
                                     cl::Optional);
 
-static cl::list<std::string> InputFilenames(cl::Positional,
+static cl::list<std::string> InputFilenames(cl::Optional,
                                             cl::desc("<input object files>"),
                                             cl::ZeroOrMore,
                                             cl::Optional);
