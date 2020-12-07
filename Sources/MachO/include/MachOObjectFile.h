@@ -16,6 +16,11 @@ public:
   
   ~MachOObjectFile() = default;
   MachOObjectFile(MemoryBufferRef mb) : mb(mb) {}
+  
+  const MachO::mach_header &getHeader() const;
+  const MachO::mach_header_64 &getHeader64() const;
+  
+  bool is64Bit() const;
 };
 
 llvm::Optional<MemoryBufferRef> readFile(StringRef path);
