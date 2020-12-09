@@ -89,7 +89,7 @@
 #ifndef LLVM_SUPPORT_CONVERTUTF_H
 #define LLVM_SUPPORT_CONVERTUTF_H
 
-#include "llvm/Config/indexstoredb-prefix.h"
+#include "llvm/Config/rdump-prefix.h"
 
 #include <cstddef>
 #include <string>

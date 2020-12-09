@@ -17,7 +17,7 @@
 #ifndef LLVM_SUPPORT_SIGNPOSTS_H
 #define LLVM_SUPPORT_SIGNPOSTS_H
 
-#include "llvm/Config/indexstoredb-prefix.h"
+#include "llvm/Config/rdump-prefix.h"
 
 namespace llvm {
 class SignpostEmitterImpl;

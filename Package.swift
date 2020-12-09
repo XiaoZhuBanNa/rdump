@@ -7,6 +7,7 @@ let package = Package(
     name: "rdump",
     products: [
       .library(name: "MachO", targets: ["MachO"]),
+      .library(name: "LLVMSupport", targets: ["LLVMSupport"]),
       .executable(name: "rdump", targets: ["rdump"]),
     ],
     dependencies: [

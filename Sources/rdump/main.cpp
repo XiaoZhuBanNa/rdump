@@ -2,6 +2,8 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/ADT/STLExtras.h"
 #include "MachOObjectFile.h"
+#include "llvm/BinaryFormat/Magic.h"
+#include "llvm/Support/raw_ostream.h"
 
 using namespace llvm;
 using namespace macho;
@@ -32,6 +34,17 @@ int main(int argc, char *argv[]) {
   cl::ParseCommandLineOptions(argc, argv);
   
   Optional<MemoryBufferRef> buffer = readFile(Library);
+  if (!buffer)
+    return EXIT_FAILURE;
+  MemoryBufferRef mbref = *buffer;
+  
+  switch (identify_magic(mbref.getBuffer())) {
+    case file_magic::archive: {
+      break;
+    }
+    default:
+      errs() << Library + ": unhandled file type" << "\n";
+  }
   
   // llvm::for_each(InputFilenames, dumpInput);
   

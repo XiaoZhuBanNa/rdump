@@ -17,7 +17,6 @@
  * could do this with a combination of `-fvisibility=hidden` and `ld -r`.
 */
 
-#define llvm indexstoredb_llvm
 #define LLVMEnablePrettyStackTrace indexstoredb_LLVMEnablePrettyStackTrace
 #define LLVMParseCommandLineOptions indexstoredb_LLVMParseCommandLineOptions
 #define LLVMResetFatalErrorHandler indexstoredb_LLVMResetFatalErrorHandler
