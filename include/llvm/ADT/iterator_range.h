@@ -18,7 +18,7 @@
 #ifndef LLVM_ADT_ITERATOR_RANGE_H
 #define LLVM_ADT_ITERATOR_RANGE_H
 
-#include "llvm/Config/indexstoredb-prefix.h"
+#include "llvm/Config/rdump-prefix.h"
 
 #include <iterator>
 #include <utility>

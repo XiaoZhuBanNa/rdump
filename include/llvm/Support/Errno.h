@@ -13,7 +13,7 @@
 #ifndef LLVM_SUPPORT_ERRNO_H
 #define LLVM_SUPPORT_ERRNO_H
 
-#include "llvm/Config/indexstoredb-prefix.h"
+#include "llvm/Config/rdump-prefix.h"
 
 #include <cerrno>
 #include <string>

@@ -9,7 +9,7 @@
 #ifndef LLVM_SUPPORT_WINDOWSERROR_H
 #define LLVM_SUPPORT_WINDOWSERROR_H
 
-#include "llvm/Config/indexstoredb-prefix.h"
+#include "llvm/Config/rdump-prefix.h"
 
 #include <system_error>
 

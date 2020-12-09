@@ -12,7 +12,7 @@
 #ifndef LLVM_ABI_BREAKING_CHECKS_H
 #define LLVM_ABI_BREAKING_CHECKS_H
 
-#include "llvm/Config/indexstoredb-prefix.h"
+#include "llvm/Config/rdump-prefix.h"
 
 /* Define to enable checks that alter the LLVM C++ ABI */
 #define LLVM_ENABLE_ABI_BREAKING_CHECKS 0

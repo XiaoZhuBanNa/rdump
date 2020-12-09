@@ -61,7 +61,8 @@ add_library(LLVMSupport STATIC
   Support/Watchdog.cpp
   Support/WithColor.cpp
   Support/YAMLParser.cpp
-  Support/YAMLTraits.cpp)
+  Support/YAMLTraits.cpp
+  Support/Magic.cpp)
 target_compile_definitions(LLVMSupport PUBLIC
   LLVM_ENABLE_EXCEPTIONS=1)
 if(CMAKE_CXX_SIMULATE_ID MATCHES MSVC)

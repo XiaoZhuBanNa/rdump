@@ -14,7 +14,7 @@
 #ifndef LLVM_SUPPORT_UNIQUE_LOCK_H
 #define LLVM_SUPPORT_UNIQUE_LOCK_H
 
-#include "llvm/Config/indexstoredb-prefix.h"
+#include "llvm/Config/rdump-prefix.h"
 
 #include <cassert>
 

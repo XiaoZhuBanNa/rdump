@@ -7,6 +7,7 @@ let package = Package(
     name: "rdump",
     products: [
       .library(name: "MachO", targets: ["MachO"]),
+      .library(name: "LLVMSupport", targets: ["LLVMSupport"]),
       .executable(name: "rdump", targets: ["rdump"]),
     ],
     dependencies: [
@@ -16,7 +17,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "rdump",
-            dependencies: ["LLVMSupport"]),
+            dependencies: ["LLVMSupport", "MachO"]),
         .target(
           name: "MachO",
           dependencies: ["LLVMSupport"]),
