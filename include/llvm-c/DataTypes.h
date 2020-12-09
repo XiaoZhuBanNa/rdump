@@ -24,7 +24,7 @@
 #ifndef LLVM_C_DATATYPES_H
 #define LLVM_C_DATATYPES_H
 
-#include "llvm/Config/indexstoredb-prefix.h"
+#include "llvm/Config/rdump-prefix.h"
 
 #ifdef __cplusplus
 #include <cmath>

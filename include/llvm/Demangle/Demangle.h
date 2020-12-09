@@ -4,7 +4,7 @@
 #ifndef LLVM_DEMANGLE_DEMANGLE_H
 #define LLVM_DEMANGLE_DEMANGLE_H
 
-#include "llvm/Config/indexstoredb-prefix.h"
+#include "llvm/Config/rdump-prefix.h"
 
 static inline char *itaniumDemangle(const char *mangled_name, char *buf,
                                     size_t *n, int *status) {

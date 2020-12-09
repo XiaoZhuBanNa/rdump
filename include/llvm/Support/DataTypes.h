@@ -26,7 +26,7 @@
 #ifndef SUPPORT_DATATYPES_H
 #define SUPPORT_DATATYPES_H
 
-#include "llvm/Config/indexstoredb-prefix.h"
+#include "llvm/Config/rdump-prefix.h"
 
 #define HAVE_INTTYPES_H 1
 #define HAVE_STDINT_H 1
