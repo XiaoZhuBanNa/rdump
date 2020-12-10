@@ -5,7 +5,7 @@
 #include "llvm/Support/StringSaver.h"
 #include <vector>
 
-namespace llvm {
+namespace macho {
 
 // Use this arena if your object doesn't have a destructor.
 extern llvm::BumpPtrAllocator bAlloc;
@@ -43,16 +43,6 @@ template <typename T, typename... U> T *make(U &&... args) {
       T(std::forward<U>(args)...);
 }
 
-} // namespace lld
-
-BumpPtrAllocator llvm::bAlloc;
-StringSaver llvm::saver{bAlloc};
-std::vector<llvm::SpecificAllocBase *> llvm::SpecificAllocBase::instances;
-
-void llvm::freeArena() {
-  for (SpecificAllocBase *alloc : SpecificAllocBase::instances)
-    alloc->reset();
-  bAlloc.Reset();
-}
+} // namespace macho
 
 #endif /* Header_h */

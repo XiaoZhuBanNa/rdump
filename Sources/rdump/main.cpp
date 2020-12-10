@@ -1,9 +1,10 @@
 #include <iostream>
 #include "llvm/Support/CommandLine.h"
 #include "llvm/ADT/STLExtras.h"
-#include "MachOObjectFile.h"
 #include "llvm/BinaryFormat/Magic.h"
 #include "llvm/Support/raw_ostream.h"
+#include "ObjFile.h"
+#include "Memory.h"
 
 using namespace llvm;
 using namespace macho;
@@ -30,19 +31,19 @@ static void dumpInput(StringRef file) {
   
 }
 
-int main(int argc, char *argv[]) {
-  cl::ParseCommandLineOptions(argc, argv);
-  
+static File *addFile(StringRef path) {
   Optional<MemoryBufferRef> buffer = readFile(Library);
   if (!buffer)
-    return EXIT_FAILURE;
+    return nullptr;
   MemoryBufferRef mbref = *buffer;
+  File *newFile = nullptr;
   
   switch (identify_magic(mbref.getBuffer())) {
     case file_magic::archive: {
       break;
     }
     case file_magic::macho_object:
+      newFile = make<ObjFile>(mbref, "");
       break;
     case file_magic::macho_dynamically_linked_shared_lib:
     case file_magic::macho_dynamically_linked_shared_lib_stub:
@@ -54,6 +55,16 @@ int main(int argc, char *argv[]) {
     default:
       errs() << Library + ": unhandled file type" << "\n";
   }
+  
+  return newFile;
+}
+
+int main(int argc, char *argv[]) {
+  cl::ParseCommandLineOptions(argc, argv);
+  
+  addFile(Library);
+  
+  
   
   // llvm::for_each(InputFilenames, dumpInput);
   

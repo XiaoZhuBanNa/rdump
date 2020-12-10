@@ -10,14 +10,10 @@ using namespace llvm;
 
 namespace macho {
 
-class MachOObjectFile : public File {
+class ObjFile : public File {
 public:
-  
-  MemoryBufferRef mb;
-  
-  ~MachOObjectFile() = default;
-  MachOObjectFile(MemoryBufferRef mb) : mb(mb) {}
-  
+  explicit ObjFile(MemoryBufferRef mb, StringRef archiveName);
+    
   const MachO::mach_header &getHeader() const;
   const MachO::mach_header_64 &getHeader64() const;
   
