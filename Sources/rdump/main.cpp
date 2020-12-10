@@ -42,8 +42,12 @@ static File *addFile(StringRef path) {
     case file_magic::archive: {
       break;
     }
+    case file_magic::macho_universal_binary:
+      break;
     case file_magic::macho_object:
       newFile = make<MachOFile>(mbref, "");
+      break;
+    case file_magic::macho_executable:
       break;
     case file_magic::macho_dynamically_linked_shared_lib:
     case file_magic::macho_dynamically_linked_shared_lib_stub:
