@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "llvm/Support/MemoryBuffer.h"
+#include "llvm/BinaryFormat/MachO.h"
 
 using namespace llvm;
 
@@ -32,6 +33,7 @@ private:
   const StringRef name;
 };
 
+llvm::Optional<MemoryBufferRef> readFile(StringRef path);
 }
 
 #endif /* File_h */

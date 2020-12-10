@@ -39,8 +39,6 @@ private:
   const char *UuidLoadCmd = nullptr;
 };
 
-llvm::Optional<MemoryBufferRef> readFile(StringRef path);
-
 }
 
 #endif
