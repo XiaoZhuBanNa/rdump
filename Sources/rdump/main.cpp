@@ -3,7 +3,7 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/BinaryFormat/Magic.h"
 #include "llvm/Support/raw_ostream.h"
-#include "ObjFile.h"
+#include "MachOFile.h"
 #include "Memory.h"
 
 using namespace llvm;
@@ -43,7 +43,7 @@ static File *addFile(StringRef path) {
       break;
     }
     case file_magic::macho_object:
-      newFile = make<ObjFile>(mbref, "");
+      newFile = make<MachOFile>(mbref, "");
       break;
     case file_magic::macho_dynamically_linked_shared_lib:
     case file_magic::macho_dynamically_linked_shared_lib_stub:

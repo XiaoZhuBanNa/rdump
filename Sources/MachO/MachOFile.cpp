@@ -1,4 +1,4 @@
-#include "ObjFile.h"
+#include "MachOFile.h"
 #include "Memory.h"
 #include "llvm/Support/Endian.h"
 #include "llvm/BinaryFormat/MachO.h"
@@ -8,11 +8,11 @@ using namespace llvm::MachO;
 using namespace llvm::support::endian;
 using namespace macho;
 
-bool ObjFile::is64Bit() const {
+bool MachOFile::is64Bit() const {
   return true;
 }
 
-ObjFile::ObjFile(MemoryBufferRef mb,StringRef archiveName)
+MachOFile::MachOFile(MemoryBufferRef mb,StringRef archiveName)
     : File(ObjKind, mb) {
       
 }

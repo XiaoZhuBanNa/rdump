@@ -1,5 +1,5 @@
-#ifndef File_2_h
-#define File_2_h
+#ifndef ArchiveFile_h
+#define ArchiveFile_h
 
 #include <stdio.h>
 #include "File.h"
@@ -12,4 +12,4 @@ class ArchiveFile : public File {
 
 }
 
-#endif /* File_2_h */
+#endif /* ArchiveFile_h */

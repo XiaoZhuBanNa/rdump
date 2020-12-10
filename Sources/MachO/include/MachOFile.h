@@ -10,9 +10,9 @@ using namespace llvm;
 
 namespace macho {
 
-class ObjFile : public File {
+class MachOFile : public File {
 public:
-  explicit ObjFile(MemoryBufferRef mb, StringRef archiveName);
+  explicit MachOFile(MemoryBufferRef mb, StringRef archiveName);
     
   const MachO::mach_header &getHeader() const;
   const MachO::mach_header_64 &getHeader64() const;
