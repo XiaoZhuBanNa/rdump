@@ -1,4 +1,4 @@
-#include "MachOObjectFile.h"
+#include "ObjFile.h"
 #include "Memory.h"
 #include "llvm/Support/Endian.h"
 #include "llvm/BinaryFormat/MachO.h"
@@ -8,8 +8,13 @@ using namespace llvm::MachO;
 using namespace llvm::support::endian;
 using namespace macho;
 
-bool MachOObjectFile::is64Bit() const {
+bool ObjFile::is64Bit() const {
   return true;
+}
+
+ObjFile::ObjFile(MemoryBufferRef mb,StringRef archiveName)
+    : File(ObjKind, mb) {
+      
 }
 
 // Open a given file path and return it as a memory-mapped file.
