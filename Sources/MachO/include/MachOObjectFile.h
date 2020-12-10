@@ -4,12 +4,13 @@
 #include <stdio.h>
 #include "llvm/BinaryFormat/MachO.h"
 #include "llvm/Support/MemoryBuffer.h"
+#include "File.h"
 
 using namespace llvm;
 
 namespace macho {
 
-class MachOObjectFile {
+class MachOObjectFile : public File {
 public:
   
   MemoryBufferRef mb;

@@ -42,6 +42,15 @@ int main(int argc, char *argv[]) {
     case file_magic::archive: {
       break;
     }
+    case file_magic::macho_object:
+      break;
+    case file_magic::macho_dynamically_linked_shared_lib:
+    case file_magic::macho_dynamically_linked_shared_lib_stub:
+      break;
+    case file_magic::macho_bundle:
+      break;
+    case file_magic::tapi_file:
+      break;
     default:
       errs() << Library + ": unhandled file type" << "\n";
   }
