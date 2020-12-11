@@ -4,6 +4,7 @@
 #include "llvm/BinaryFormat/Magic.h"
 #include "llvm/Support/raw_ostream.h"
 #include "MachOFile.h"
+#include "FatFile.h"
 #include "Memory.h"
 
 using namespace llvm;
@@ -31,27 +32,37 @@ static void dumpInput(StringRef file) {
   
 }
 
-static File *addFile(StringRef path) {
+static File *processFile(StringRef path) {
   Optional<MemoryBufferRef> buffer = readFile(Library);
+  
   if (!buffer)
     return nullptr;
+  
   MemoryBufferRef mbref = *buffer;
   File *newFile = nullptr;
   
   switch (identify_magic(mbref.getBuffer())) {
-    case file_magic::archive: {
+    case file_magic::archive:
+      // processArchive();
       break;
-    }
+    case file_magic::macho_universal_binary:
+      // processFatFile();
+      break;
     case file_magic::macho_object:
-      newFile = make<MachOFile>(mbref, "");
-      break;
+    case file_magic::macho_executable:
+    case file_magic::macho_fixed_virtual_memory_shared_lib:
+    case file_magic::macho_core:
+    case file_magic::macho_preload_executable:
     case file_magic::macho_dynamically_linked_shared_lib:
-    case file_magic::macho_dynamically_linked_shared_lib_stub:
-      break;
+    case file_magic::macho_dynamic_linker:
     case file_magic::macho_bundle:
+    case file_magic::macho_dynamically_linked_shared_lib_stub:
+    case file_magic::macho_dsym_companion:
+    case file_magic::macho_kext_bundle:
+      newFile = make<MachOFile>(mbref, "");
+      // processMachOFile();
       break;
-    case file_magic::tapi_file:
-      break;
+      
     default:
       errs() << Library + ": unhandled file type" << "\n";
   }
@@ -62,9 +73,7 @@ static File *addFile(StringRef path) {
 int main(int argc, char *argv[]) {
   cl::ParseCommandLineOptions(argc, argv);
   
-  addFile(Library);
-  
-  
+  processFile(Library);
   
   // llvm::for_each(InputFilenames, dumpInput);
   
