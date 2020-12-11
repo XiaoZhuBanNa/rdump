@@ -58,3 +58,17 @@ Optional<MemoryBufferRef> macho::readFile(StringRef path) {
   errs() << "unable to find matching architecture in " + path << "\n";
   return None;
 }
+
+const load_command *macho::findCommand(const mach_header_64 *hdr,
+                                       uint32_t type) {
+  const uint8_t *p =
+      reinterpret_cast<const uint8_t *>(hdr) + sizeof(mach_header_64);
+
+  for (uint32_t i = 0, n = hdr->ncmds; i < n; ++i) {
+    auto *cmd = reinterpret_cast<const load_command *>(p);
+    if (cmd->cmd == type)
+      return cmd;
+    p += cmd->cmdsize;
+  }
+  return nullptr;
+}
