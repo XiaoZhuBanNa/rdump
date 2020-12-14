@@ -8,7 +8,7 @@ using namespace llvm::MachO;
 using namespace llvm::support::endian;
 using namespace macho;
 
-FatFile::FatFile(MemoryBufferRef mb, Error &Err) : File(ObjKind, mb) {
+FatFile::FatFile(MemoryBufferRef mb) : File(ObjKind, mb) {
   
 }
 

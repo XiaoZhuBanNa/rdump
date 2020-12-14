@@ -11,6 +11,9 @@ using namespace llvm;
 namespace macho {
 
 class FatFile : public File {
+public:
+  explicit FatFile(MemoryBufferRef mb);
+  
   uint32_t Magic;
   uint32_t NumberOfObjects;
   
@@ -24,8 +27,6 @@ public:
   class object_iterator {
     // ...
   };
-  
-  FatFile(MemoryBufferRef Souce, Error &Err);
 };
 
 };

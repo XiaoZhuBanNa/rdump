@@ -12,7 +12,7 @@ bool MachOFile::is64Bit() const {
   return true;
 }
 
-MachOFile::MachOFile(MemoryBufferRef mb,StringRef archiveName) : File(ObjKind, mb) {
+MachOFile::MachOFile(MemoryBufferRef mb, StringRef archiveName) : File(ObjKind, mb) {
   auto *buf = reinterpret_cast<const uint8_t *>(mb.getBufferStart());
   auto *hdr = reinterpret_cast<const mach_header_64 *>(mb.getBufferStart());
 

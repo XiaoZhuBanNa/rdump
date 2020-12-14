@@ -6,6 +6,7 @@
 #include "MachOFile.h"
 #include "FatFile.h"
 #include "Memory.h"
+#include "ArchiveFile.h"
 
 using namespace llvm;
 using namespace macho;
@@ -43,10 +44,10 @@ static File *processFile(StringRef path) {
   
   switch (identify_magic(mbref.getBuffer())) {
     case file_magic::archive:
-      // processArchive();
+      newFile = make<ArchiveFile>(mbref);
       break;
     case file_magic::macho_universal_binary:
-      // processFatFile();
+      newFile = make<FatFile>(mbref);
       break;
     case file_magic::macho_object:
     case file_magic::macho_executable:
@@ -60,7 +61,6 @@ static File *processFile(StringRef path) {
     case file_magic::macho_dsym_companion:
     case file_magic::macho_kext_bundle:
       newFile = make<MachOFile>(mbref, "");
-      // processMachOFile();
       break;
       
     default:

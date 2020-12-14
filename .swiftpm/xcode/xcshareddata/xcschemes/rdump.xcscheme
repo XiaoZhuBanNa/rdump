@@ -77,7 +77,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-library=/Users/roy/Library/Developer/Xcode/DerivedData/OCTest-esqzcalkojutkgabwsigdyewtfqw/Build/Intermediates.noindex/OCTest.build/Debug-iphonesimulator/OCTest.build/Objects-normal/x86_64/ViewController.o"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-library=/Users/roy/Desktop/Dev/bd-llvm-project/bd-llvm-project/build/Debug/lib/BDInstrPass.dylib"
@@ -85,7 +85,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-library=/Users/roy/Library/Developer/Xcode/DerivedData/lldFrameworkTest-akynyiqekaqigdapklkbghavzaff/Build/Products/Debug/liblldFrameworkTest.a"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
