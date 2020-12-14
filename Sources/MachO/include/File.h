@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "llvm/Support/MemoryBuffer.h"
+#include "llvm/BinaryFormat/MachO.h"
 
 using namespace llvm;
 
@@ -32,6 +33,10 @@ private:
   const StringRef name;
 };
 
+llvm::Optional<MemoryBufferRef> readFile(StringRef path);
+
+const llvm::MachO::load_command *
+findCommand(const llvm::MachO::mach_header_64 *, uint32_t type);
 }
 
 #endif /* File_h */

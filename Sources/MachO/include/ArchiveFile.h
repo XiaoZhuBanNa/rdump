@@ -7,7 +7,8 @@
 namespace macho {
 
 class ArchiveFile : public File {
-  
+public:
+  explicit ArchiveFile(MemoryBufferRef mb);
 };
 
 }
