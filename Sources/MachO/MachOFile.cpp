@@ -16,7 +16,7 @@ MachOFile::MachOFile(MemoryBufferRef mb, StringRef archiveName) : File(ObjKind, 
   auto *buf = reinterpret_cast<const uint8_t *>(mb.getBufferStart());
   auto *hdr = reinterpret_cast<const mach_header_64 *>(mb.getBufferStart());
 
-  header64 = *hdr;
+  header = *hdr;
   
   uint32_t ncmds = hdr->ncmds;
   
@@ -34,7 +34,7 @@ MachOFile::MachOFile(MemoryBufferRef mb, StringRef archiveName) : File(ObjKind, 
   
   if (const load_command *cmd = findCommand(hdr, LC_SEGMENT_64)) {
     auto *c = reinterpret_cast<const segment_command_64 *>(cmd);
-    sections_64 = ArrayRef<section_64>{
+    sectionHeaders = ArrayRef<section_64>{
         reinterpret_cast<const section_64 *>(c + 1), c->nsects};
   }
 }

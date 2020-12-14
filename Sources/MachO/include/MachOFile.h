@@ -14,7 +14,7 @@ class MachOFile : public File {
 public:
   explicit MachOFile(MemoryBufferRef mb, StringRef archiveName);
     
-  const MachO::mach_header_64 &getHeader64() const;
+  const MachO::mach_header &getHeader() const;
   
   MachO::symtab_command getSymtabLoadCommand() const;
   MachO::dysymtab_command getDysymtabLoadCommand() const;
@@ -32,16 +32,16 @@ public:
   void parseSections(ArrayRef<llvm::MachO::section_64>);
   
 private:
-  MachO::mach_header_64 header64;
-  ArrayRef<llvm::MachO::section_64> sections_64;
-  ArrayRef<llvm::MachO::segment_command_64> segments_64;
+  MachO::mach_header_64 header;
+  ArrayRef<MachO::load_command> loadCommands;
+  ArrayRef<MachO::section_64> sectionHeaders;
+  ArrayRef<MachO::segment_command_64> segments;
+  ArrayRef<MachO::nlist_64> symbols;
+  char *strtab;
   
-  const char *symtabLoadCmd = nullptr;
-  const char *dysymtabLoadCmd = nullptr;
-  const char *dataInCodeLoadCmd = nullptr;
-  const char *linkOptHintsLoadCmd = nullptr;
-  const char *dyldInfoLoadCmd = nullptr;
-  const char *uuidLoadCmd = nullptr;
+  MachO::uuid_command uuidLoadCmd;
+  MachO::symtab_command symtabLoadCmd;
+  MachO::dysymtab_command dysymtabLoadCmd;
   
   void parseDebugInfo();
 };
