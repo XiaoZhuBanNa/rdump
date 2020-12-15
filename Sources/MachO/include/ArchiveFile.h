@@ -9,6 +9,8 @@ namespace macho {
 class ArchiveFile : public File {
 public:
   explicit ArchiveFile(MemoryBufferRef mb);
+  static bool classof(const File *f) { return f->kind() == ArchiveKind; }
+  
 };
 
 }

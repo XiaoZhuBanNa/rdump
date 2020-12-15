@@ -13,6 +13,7 @@ namespace macho {
 class FatFile : public File {
 public:
   explicit FatFile(MemoryBufferRef mb);
+  static bool classof(const File *f) { return f->kind() == FatFileKind; }
   
   uint32_t Magic;
   uint32_t NumberOfObjects;

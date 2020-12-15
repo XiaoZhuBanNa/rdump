@@ -17,6 +17,7 @@ public:
     DylibKind,
     ArchiveKind,
     BitcodeKind,
+    FatFileKind,
   };
   
   virtual ~File() = default;

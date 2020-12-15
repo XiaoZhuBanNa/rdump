@@ -13,6 +13,7 @@ namespace macho {
 class MachOFile : public File {
 public:
   explicit MachOFile(MemoryBufferRef mb, StringRef archiveName);
+  static bool classof(const File *f) { return f->kind() == ObjKind; }
     
   const MachO::mach_header &getHeader() const;
   
@@ -29,12 +30,16 @@ public:
   
   bool is64Bit() const;
   
-  void parseSections(ArrayRef<llvm::MachO::section_64>);
+  void test();
+  
+  void parseLoadCommands();
+  void parseSections();
   
 private:
   MachO::mach_header_64 header;
-  ArrayRef<MachO::load_command> loadCommands;
-  ArrayRef<MachO::section_64> sectionHeaders;
+  SmallVector<std::unique_ptr<MachO::load_command>, 4> loadCommands;
+  SmallVector<std::unique_ptr<MachO::section_64>, 8> sectionHeaders;
+//  ArrayRef<MachO::section_64> sectionHeaders;
   ArrayRef<MachO::segment_command_64> segments;
   ArrayRef<MachO::nlist_64> symbols;
   char *strtab;

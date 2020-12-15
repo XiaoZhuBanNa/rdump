@@ -59,9 +59,12 @@ static File *processFile(StringRef path) {
     case file_magic::macho_bundle:
     case file_magic::macho_dynamically_linked_shared_lib_stub:
     case file_magic::macho_dsym_companion:
-    case file_magic::macho_kext_bundle:
+    case file_magic::macho_kext_bundle: {
       newFile = make<MachOFile>(mbref, "");
+//      auto *machoFile = dyn_cast<MachOFile>(newFile);
+//      machoFile->test();
       break;
+    }
       
     default:
       errs() << Library + ": unhandled file type" << "\n";
